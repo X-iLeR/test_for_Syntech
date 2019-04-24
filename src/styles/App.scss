@@ -1,0 +1,229 @@
+$inputColor: rgba(0, 0, 0, 0.20);
+$padding: 24px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  & * {
+	box-sizing: border-box;
+  }
+}
+
+header, footer {
+  background: rgba(57, 102, 233, 0.25);
+
+  a {
+	margin: 0;
+	text-decoration: none;
+	color: #000;
+	font-weight: 900;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  padding: $padding;
+  margin: 0 auto;
+}
+
+.fadeOut, .fadeIn {
+  opacity: 0;
+}
+
+
+
+.main {
+  background: rgba(0, 0, 0, 0.1);
+  min-height: calc(100vh - 69px * 2);
+
+  .login-form > div {
+	transition: 0.5s;
+	opacity: 1;
+	&.fadeOut, &.fadeIn {
+	  opacity: 0;
+	}
+  }
+
+  .error {
+	color: #ff171c;
+  }
+
+  .buttons {
+	display: table;
+	border-top: 1px solid $inputColor;
+	width: calc(100% + #{$padding * 2});
+	margin-left: -#{$padding};
+	padding: $padding;
+	padding-bottom: 0;
+	padding-top: 15px;
+	margin-top: $padding;
+
+	button {
+	  font-size: 21px;
+	  color: dodgerblue;
+	  padding: 10px;
+	  border: none;
+	  background: transparent;
+	  cursor: pointer;
+	  float: right;
+
+	  &:hover {
+		color: deepskyblue;
+	  }
+	}
+	.nextstep {
+	  position: relative;
+
+	  &:after {
+		content: '→';
+		margin-left: 10px;
+	  }
+	}
+  }
+
+  .login-form {
+	background: #fff;
+	border: 1px solid rgba(128, 128, 128, 0.49);
+	padding: 24px;
+	max-width: 320px;
+	margin: 0 auto;
+	border-radius: 5px;
+
+	label {
+	  p {
+		margin: 0;
+	  }
+	}
+
+	input {
+	  padding: 10px;
+	  width: 100%;
+	  margin-bottom: 15px;
+	  border: none;
+	  border-bottom: 2px solid $inputColor;
+	}
+
+	select {
+	  width: 100%;
+	  padding: 10px;
+	}
+
+	.about {
+	  display: table;
+	  width: 100%;
+	}
+
+	.secondstep {
+	  input {
+		border: 1px solid $inputColor;
+	  }
+
+	  button {
+		float: left;
+
+		& + button {
+		  float: right;
+
+		}
+	  }
+	}
+
+	.ThirdStep {
+	  .success {
+		background: limegreen;
+		width: 100px;
+		height: 100px;
+		margin: 0 auto;
+		border-radius: 100%;
+
+		p {
+		  text-align: center;
+		  line-height: 100px;
+		  color: white;
+		  margin: 0;
+		  font-size: 50px;
+		}
+	  }
+
+	  button {
+		margin: 20px auto 0 auto;
+		display: block;
+		float: initial;
+
+	  }
+	}
+
+	.progress {
+	  p {
+		text-align: center;
+		color: dodgerblue;
+		margin-top: 0;
+	  }
+
+	  .line {
+		width: calc(100% + #{$padding * 2});
+		height: 15px;
+		border-top: 1px solid #a9a9a9;
+		border-bottom: 1px solid #a9a9a9;
+		margin-left: -#{$padding};
+		margin-bottom: 30px;
+
+		span {
+		  height: 13px;
+		  background: dodgerblue;
+		  display: block;
+		  transition: 1s;
+		}
+	  }
+	}
+
+	.group {
+	  position: relative;
+	  padding-top: 10px;
+	  display: table;
+	  width: 100%;
+
+	  p {
+		text-align: center;
+	  }
+
+	  input[type='radio'] {
+		display: none;
+
+		& + label {
+		  padding: 10px;
+		  text-align: center;
+		  border: 1px solid $inputColor;
+		  cursor: pointer;
+		}
+
+		&:checked + label, &:hover + label {
+		  background: deepskyblue;
+		  color: white;
+		}
+	  }
+
+	  label {
+		float: left;
+		width: 33.3333%;
+
+		span {
+		  position: absolute;
+		  top: -20px;
+		  left: 50%;
+		  transform: translate(-50%, 0);
+		}
+
+		input {
+		  width: 100%;
+		}
+	  }
+
+	  input {
+		width: 33.3333%;
+		float: left;
+	  }
+	}
+  }
+}
