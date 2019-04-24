@@ -1,7 +1,7 @@
 import {ADD, STEP} from "./constants";
 
 let initialState = require('./init.json');
-let loginReduser = (state = initialState, action) => {
+let loginReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case STEP:
 			return {...state, step: action.payload.value};
@@ -12,4 +12,4 @@ let loginReduser = (state = initialState, action) => {
 	}
 };
 
-export default loginReduser;
+export default loginReducer;

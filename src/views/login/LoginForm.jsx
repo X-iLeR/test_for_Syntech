@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {add_fild, NextStep} from "./logic/actions";
+import {add_field, NextStep} from "./logic/actions";
 import FirstStep from "./components/FirstStep";
 import SecondStep from "./components/SecondStep";
 import ThirdStep from "./components/ThirdStep";
@@ -29,8 +29,8 @@ class LoginForm extends Component {
 
 	next_step = (value) => {
 		this.props.nextstep(value);
-
 	};
+
 	prev_step = (value) => {
 		this.props.prevstep(value);
 	};
@@ -50,7 +50,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		nextstep: (value) => dispatch(NextStep(value)),
 		prevstep: (value) => dispatch(NextStep(value)),
-		savedata: (name, value) => dispatch(add_fild(name, value)),
+		savedata: (name, value) => dispatch(add_field(name, value)),
 	}
 }
 

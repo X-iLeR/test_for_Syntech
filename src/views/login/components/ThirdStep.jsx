@@ -10,6 +10,7 @@ class ThirdStep extends Component {
 		};
 
 		console.log(JSON.stringify(result));
+		console.log(result);
 	};
 	componentDidMount() {
 		setTimeout(() => {
@@ -23,14 +24,14 @@ class ThirdStep extends Component {
 				<div className="progress">
 					<p>thx for signup :)</p>
 					<div className="line">
-						<span style={{width: currentprogress + "%"}}></span>
+						<span style={{width: currentprogress + "%"}}>&nbsp;</span>
 					</div>
 				</div>
 				<div className="success">
 					<p>&#10004;</p>
 				</div>
 				<div className="buttons">
-					<button className={'nextstep'} onClick={e => this.success_form()}>Success</button>
+					<button className={'nextstep'} onClick={this.success_form}>Success</button>
 				</div>
 			</div>
 		)

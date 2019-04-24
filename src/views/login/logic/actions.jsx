@@ -9,7 +9,7 @@ export let NextStep = (value) => {
 	}
 };
 
-export let add_fild = (name, value) => {
+export let add_field = (name, value) => {
 	return {
 		type: ADD,
 		payload: {

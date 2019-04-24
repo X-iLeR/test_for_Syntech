@@ -10,17 +10,17 @@ class FirstStep extends Component {
 		let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 		if(!re.test(String(e.target.email.value).toLowerCase())){
-			e.target.email.parentElement.getElementsByTagName('p')[0].innerHTML = ('invalid');
+			e.target.email.parentElement.getElementsByTagName('p')[0].innerHTML = ('Invalid email format');
 			e.target.email.parentElement.getElementsByTagName('p')[0].className += " error";
 			errors++;
 		}
 		if(e.target.password.value.length < 6 ){
-			e.target.password.parentElement.getElementsByTagName('p')[0].innerHTML = ('invalid');
+			e.target.password.parentElement.getElementsByTagName('p')[0].innerHTML = ('Password must be at least 6 characters');
 			e.target.password.parentElement.getElementsByTagName('p')[0].className += " error";
 			errors++;
 		}
 		if(e.target.password.value !== e.target.repassword.value){
-			e.target.repassword.parentElement.getElementsByTagName('p')[0].innerHTML = ('invalid');
+			e.target.repassword.parentElement.getElementsByTagName('p')[0].innerHTML = ('Password mismatch');
 			e.target.repassword.parentElement.getElementsByTagName('p')[0].className += " error";
 			errors++;
 		}
@@ -28,9 +28,8 @@ class FirstStep extends Component {
 		if(errors === 0){
 			this._animate.classList.add("fadeOut");
 			let email = e.target.email.value;
-			let password = e.target.password.value
+			let password = e.target.password.value;
 			setTimeout(() => {
-				// debugger;
 				this.props.nextstep(this.props.currentstep + 1);
 				this.props.save('email', email);
 				this.props.save('password', password);
@@ -57,10 +56,10 @@ class FirstStep extends Component {
 				<div className="progress">
 					<p>SignUp</p>
 					<div className="line">
-						<span style={{width: currentprogress + "%"}}></span>
+						<span style={{width: currentprogress + "%"}}>&nbsp;</span>
 					</div>
 				</div>
-				<form method={'POST'} onSubmit={e => this.validation(e)} id={'firstStep'}>
+				<form method={'POST'} onSubmit={this.validation} id={'firstStep'}>
 					<label><p>Email</p><input type="email" id="email" defaultValue={email}  required /></label>
 					<label><p>password</p><input id={'password'} type="password" defaultValue={password} required /></label>
 					<label><p>confirm</p><input id={'repassword'} type="password" defaultValue={password} required /></label>

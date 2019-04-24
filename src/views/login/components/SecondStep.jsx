@@ -9,13 +9,17 @@ class SecondStep extends Component {
 		let validate_date = new Date(date).getDate();
 		let current_date = parseInt(e.target.day.value);
 		let tequila_year = new Date().getFullYear() - 18; // :)
-		if(current_date != validate_date || parseInt(e.target.year.value) > tequila_year){
-			e.target.day.parentElement.getElementsByTagName('span')[0].innerHTML = ('invalid');
+		if(current_date != validate_date){
+			e.target.day.parentElement.getElementsByTagName('span')[0].innerHTML = ('Invalid birth date');
+			e.target.day.parentElement.getElementsByTagName('span')[0].className += " error";
+			errors++;
+		}else if(parseInt(e.target.year.value) > tequila_year) {
+			e.target.day.parentElement.getElementsByTagName('span')[0].innerHTML = ('You must be 18 years at least');
 			e.target.day.parentElement.getElementsByTagName('span')[0].className += " error";
 			errors++;
 		}
 		if(!e.target.querySelector('input[name="gender"]:checked')){
-			e.target.male.parentElement.getElementsByTagName('p')[0].innerHTML = ('invalid');
+			e.target.male.parentElement.getElementsByTagName('p')[0].innerHTML = ('Gender must be checked');
 			e.target.male.parentElement.getElementsByTagName('p')[0].className += " error";
 			errors++;
 		}
@@ -38,10 +42,10 @@ class SecondStep extends Component {
 		let currentprogress = this.props.currentstep / steps * 100;
 		let date_of_birth = '', day = '', month = '', year = '';
 		if(typeof this.props.date_of_birth !== 'undefined'){
-			date_of_birth = this.props.date_of_birth;
-			day = new Date(date_of_birth).getDate();
-			month = new Date(date_of_birth).getMonth();
-			year = new Date(date_of_birth).getFullYear();
+			date_of_birth = new Date(this.props.date_of_birth);
+			day = date_of_birth.getDate();
+			month = date_of_birth.getMonth();
+			year = date_of_birth.getFullYear();
 		}
 		let gender = 'uns';
 		if(typeof this.props.gender !== 'undefined'){
@@ -56,10 +60,10 @@ class SecondStep extends Component {
 				<div className="progress">
 					<p>SignUp</p>
 					<div className="line">
-						<span style={{width: currentprogress + "%"}}></span>
+						<span style={{width: currentprogress + "%"}}>&nbsp;</span>
 					</div>
 				</div>
-				<form method={'POST'} onSubmit={e => this.validation(e)}>
+				<form method={'POST'} onSubmit={this.validation}>
 					<div className="group">
 						<label><span>Date of birth</span><input type="number" id={'day'} placeholder={'DD'} defaultValue={day} required/></label>
 						<input type="number" placeholder={"MM"} id={'month'} defaultValue={month} required/>
@@ -82,7 +86,7 @@ class SecondStep extends Component {
 						</select>
 					</div>
 					<div className="buttons">
-						<button onClick={e => this.props.prevstep(this.props.currentstep - 1)}>Back</button>
+						<button onClick={() => this.props.prevstep(this.props.currentstep - 1)}>Back</button>
 						<button type={'submit'} className={'nextstep'}>Next</button>
 					</div>
 				</form>
